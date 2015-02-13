@@ -18,4 +18,4 @@ sudo: false
 before_script:
 - "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
 after_success:
-- "$HOME/bin/artifacts upload -t artifacts/ --path $(find build/distributions -iname '*.zip')"
+- "$HOME/bin/artifacts upload -t artifacts/ $(find build/distributions -iname '*.zip')"
