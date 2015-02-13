@@ -12,10 +12,11 @@ env:
   - TERM=dumb
   - ARTIFACTS_S3_REGION=us-east-1
   - ARTIFACTS_BUCKET=danveloper-build-artifacts
+  - REPO_NAME=$(echo $TRAVIS_REPO_SLUG | cut -d'/' -f2)
   - secure: Shz6uhVgnCLcLO6AmYuYFUi5YOeBf15sEH9gQ4mWW5wHMXBzTdwsKIJg4Kt8Md49ySKR8sa7LNsI4GFFTJLy6bnrvBkULY0aNxKxbjbwS8SmXxDGcRyNv+mH1uy+n3I5ETtz8ofIubnWuzjYP6jzG+atRb1/8xQFZmA0wbxEKfQ=
   - secure: OKKZFKUUx30kF6GNv5WnSCbaTjje/+F8ZO9RTORk89JwjQzML+wqUP6jvYigXPY5otNWH1lHmVnsKtoiyBwFIB1vljXInUYW06MJ7cEXsQ434NsIPftyrHrlVYn2VmmtmEcxHc40sAu2QG3tVCLToRkLmnS8ZmOcRQKjy2aPmlk=
 sudo: false
 before_script:
 - "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
 after_success:
-- "$HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$TRAVIS_BUILD_ID/$TRAVIS_JOB_ID $(find . -iname '*.zip')"
+- "$HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/$TRAVIS_BUILD_NUMBER $(find . -iname '*.zip')"
