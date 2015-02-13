@@ -18,4 +18,4 @@ sudo: false
 before_script:
   - "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
 after_success:
-  - "artifacts upload --target-path artifacts/$TRAVIS_BUILD_ID/$TRAVIS_JOB_ID $(find build/libs -iname '*.jar')"
+  - "artifacts upload --target-path artifacts/$TRAVIS_BUILD_ID/$TRAVIS_JOB_ID --path $(find build/libs -iname '*.jar')"
