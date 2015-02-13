@@ -16,8 +16,6 @@ env:
   - secure: OKKZFKUUx30kF6GNv5WnSCbaTjje/+F8ZO9RTORk89JwjQzML+wqUP6jvYigXPY5otNWH1lHmVnsKtoiyBwFIB1vljXInUYW06MJ7cEXsQ434NsIPftyrHrlVYn2VmmtmEcxHc40sAu2QG3tVCLToRkLmnS8ZmOcRQKjy2aPmlk=
 sudo: false
 before_script:
-- curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install |
-  bash
+- "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
 after_success:
-- artifacts upload --target-path artifacts/$TRAVIS_BUILD_ID/$TRAVIS_JOB_ID --path
-  $(find build/distributions -iname '*.zip')
+- "artifacts upload --working-dir build/distributions -t artifacts/ --path $(find . -iname '*.zip')"
