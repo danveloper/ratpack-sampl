@@ -10,4 +10,12 @@ jdk:
 env:
   global:
   - TERM=dumb
+  - ARTIFACTS_AWS_REGION=us-east-1
+  - ARTIFACTS_S3_BUCKET=danveloper_build_artifacts
+  - secure: UuOrWroWwW9mJn+FrbvVtAqi1lckzvxmC0tWj7sfmEWWE35+NV/Hsc5eWhwpcnlZQmIO6k1vAG9XMIb/FZelw7NmkhAJyNoHafE1PT+cKldEfv7z/UMO3/Mq3Pxv0FkAm5HmDA6k7HmP7SZ4b4Dkw37r/Lp3/ZQc/iaHpINIW20=
+  - secure: gRA+/eOVa6RafahmQMxyswgCtQTecZpYs37n2SE0Je8Njg+Ln3repICHfXFxwQa0ofxtkBm9sEgqe67v9NbJRMevMcxcXGm3LKl1bA12unXe22jJwM+jblLj6xGcdrTfMLaSTC5iy+Jdfucy4BZg6hfXdGSEjrPA4r6mpF9DxHM=
 sudo: false
+before_script:
+  - "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
+after_success:
+  - "artifacts upload --target-path artifacts/$TRAVIS_BUILD_ID/$TRAVIS_JOB_ID"
