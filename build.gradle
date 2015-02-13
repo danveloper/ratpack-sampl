@@ -1,0 +1,11 @@
+buildscript {
+  repositories { jcenter() }
+  dependencies { classpath 'io.ratpack:ratpack-gradle:0.9.13' }
+}
+
+apply plugin: 'io.ratpack.ratpack-groovy'
+
+repositories { 
+  jcenter() 
+  maven { url "http://clinker.netty.io/nexus/content/repositories/snapshots" }
+}
