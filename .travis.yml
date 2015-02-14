@@ -13,10 +13,12 @@ env:
   - ARTIFACTS_S3_REGION=us-east-1
   - ARTIFACTS_BUCKET=danveloper-build-artifacts
   - REPO_NAME=$(echo $TRAVIS_REPO_SLUG | cut -d'/' -f2)
-  - secure: Shz6uhVgnCLcLO6AmYuYFUi5YOeBf15sEH9gQ4mWW5wHMXBzTdwsKIJg4Kt8Md49ySKR8sa7LNsI4GFFTJLy6bnrvBkULY0aNxKxbjbwS8SmXxDGcRyNv+mH1uy+n3I5ETtz8ofIubnWuzjYP6jzG+atRb1/8xQFZmA0wbxEKfQ=
-  - secure: OKKZFKUUx30kF6GNv5WnSCbaTjje/+F8ZO9RTORk89JwjQzML+wqUP6jvYigXPY5otNWH1lHmVnsKtoiyBwFIB1vljXInUYW06MJ7cEXsQ434NsIPftyrHrlVYn2VmmtmEcxHc40sAu2QG3tVCLToRkLmnS8ZmOcRQKjy2aPmlk=
+  - secure: a3Tc0pcrpz71Qz7qC9p0ENVD+jzHAzytNL+C1o1RtiCDXCxbmoqJshqUxxCBxfUJE3RhCnZXAxw7gtANpP/XR9O/4n7CjQDlmMD8DH6kWgfjMgKtN9/u9Hw/aajV6JawZIZ1w5aEBteEtLvVXeTBJxcqJ1uI0biGOzfvOw1Uqcw=
+  - secure: ZDFkRgBH2o5zP5Xe2DD5g1Af2aH7QqEyCeeJ/ePMHttM1FFL3P6sScaI9lsySX7bfTSVRwSODOlzeXukLsyHR4DqZv7LW3gCda+JguZ7zgbwUlygVWOniHvijv83dfhV8zrHBOfPz3oEzM+5h4TpdP6mHgRwRzG7gA13UO+TIB0=
 sudo: false
 before_script:
-- "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
+- curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install |
+  bash
 after_success:
-- "$HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/$TRAVIS_BUILD_NUMBER $(find . -iname '*.deb')"
+- $HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/$TRAVIS_BUILD_NUMBER
+  $(find . -iname '*.deb')
