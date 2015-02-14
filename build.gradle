@@ -1,11 +1,27 @@
 buildscript {
   repositories { jcenter() }
-  dependencies { classpath 'io.ratpack:ratpack-gradle:0.9.13' }
+  dependencies { 
+    classpath 'io.ratpack:ratpack-gradle:0.9.13' 
+    classpath 'com.netflix.nebula:gradle-ospackage-plugin:2.0.2'
+  }
 }
 
 apply plugin: 'io.ratpack.ratpack-groovy'
+apply plugin: 'os-package'
 
 repositories { 
   jcenter() 
   maven { url "http://clinker.netty.io/nexus/content/repositories/snapshots" }
+}
+
+ospackage {
+  packageName = project.applicationName
+  release '3'
+  into "/opt/${project.applicationName}"
+  from "${project.buildDir}/install/${project.applicationName}"
+}
+
+buildDeb {
+  dependsOn installApp
+  requires("openjdk-8-jre")
 }
