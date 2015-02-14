@@ -1,7 +1,7 @@
 install: true
 language: java
 script:
-- ./gradlew clean distZip
+  - ./gradlew clean buildDeb
 cache:
   directories:
   - $HOME/.gradle
@@ -17,8 +17,6 @@ env:
   - secure: ZDFkRgBH2o5zP5Xe2DD5g1Af2aH7QqEyCeeJ/ePMHttM1FFL3P6sScaI9lsySX7bfTSVRwSODOlzeXukLsyHR4DqZv7LW3gCda+JguZ7zgbwUlygVWOniHvijv83dfhV8zrHBOfPz3oEzM+5h4TpdP6mHgRwRzG7gA13UO+TIB0=
 sudo: false
 before_script:
-- curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install |
-  bash
+- "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
 after_success:
-- $HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/$TRAVIS_BUILD_NUMBER
-  $(find . -iname '*.deb')
+- "$HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/$TRAVIS_BUILD_NUMBER $(find . -iname '*.deb')"
