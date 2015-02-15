@@ -23,4 +23,5 @@ ospackage {
 
 buildDeb {
   dependsOn installApp
+  postInstall file('scripts/postInstall.sh')
 }
