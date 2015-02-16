@@ -19,4 +19,4 @@ sudo: false
 before_script:
 - "curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash"
 after_success:
-- "$HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/$TRAVIS_BUILD_NUMBER $(find . -iname '*.deb')"
+- "$HOME/bin/artifacts upload --working-dir build/distributions -t artifacts/$REPO_NAME/travis/$TRAVIS_BUILD_NUMBER $(find . -iname '*.deb')"
